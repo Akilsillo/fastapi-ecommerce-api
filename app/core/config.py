@@ -15,8 +15,14 @@ from pydantic import (
 class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(
-        env_file='../.env'
+        env_file='../.env',
+        ignored_types=True
     )
+# Sqlite config
+    sqlite_filename = 'database.db'
+    sqlite_url = f'sqlite:///{sqlite_filename}'
+
+    connect_args = {'check_same_thread': False}
 
 # Postres config
     POSTGRES_SERVER: str

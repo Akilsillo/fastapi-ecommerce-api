@@ -8,7 +8,7 @@ from datetime import datetime
 class User(Base):
     __tablename__='user'
 
-    id: Mapped[Optional[int]] = mapped_column(primary_key=True, autoincrement=True)
+    user_id: Mapped[Optional[int]] = mapped_column(primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(50))
     surname: Mapped[Optional[str]] = mapped_column(String(50))
     email: Mapped[str] = mapped_column(String(50))

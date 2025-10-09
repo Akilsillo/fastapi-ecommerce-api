@@ -31,8 +31,8 @@ class CartItem(Base):
     subtotal: Mapped[float] = mapped_column(Float)
 
     # Foreign Keys
-    cart_id: Mapped[int] = mapped_column(ForeignKey('cart.cart_id'))
-    product_id: Mapped[int] = mapped_column(ForeignKey('product.product_id'))
+    cart_id: Mapped[int] = mapped_column(ForeignKey('cart.cart_id'), primary_key=True)
+    product_id: Mapped[int] = mapped_column(ForeignKey('product.product_id'), primary_key=True)
 
     # Relationships
     cart: Mapped['Cart'] = relationship(back_populates='cart_items')

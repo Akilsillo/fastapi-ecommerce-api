@@ -16,7 +16,7 @@ class Payment(Base):
     amount: Mapped[float] = mapped_column(Float)
     currency: Mapped[str] = mapped_column(String(20))
     created_at: Mapped[datetime] = mapped_column(DateTime)
-    updated_at: Mapped[datetime] = mapped_column(datetime)
+    updated_at: Mapped[datetime] = mapped_column(DateTime)
     
     # Foreign Keys
     order_id: Mapped[int] = mapped_column(ForeignKey('order.order_id'))

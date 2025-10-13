@@ -17,7 +17,7 @@ class User(Base):
     email: Mapped[str] = mapped_column(String(50))
     password: Mapped[str] = mapped_column(String)
     is_active: Mapped[bool] = mapped_column(Boolean)
-    role: Mapped[Optional[str]] = mapped_column(String(20), default='customer')
+    is_superuser: Mapped[Optional[bool]] = mapped_column(Boolean, default=False)
     created_at: Mapped[datetime] = mapped_column(DateTime)
 
     # Relationships

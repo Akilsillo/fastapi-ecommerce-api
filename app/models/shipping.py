@@ -14,8 +14,9 @@ class Shipping(Base):
     tracking_code: Mapped[str] = mapped_column(String(100))
     shipping_cost: Mapped[Optional[float]] = mapped_column(Float)
     crated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now())
-    delivered_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now())
-
+    delivered_at: Mapped[Optional[datetime]] = mapped_column(DateTime, default=None)
+    is_active: Mapped[Optional[bool]] = mapped_column(Boolean, default=True)
+    
     # Foreign Keys
     order_id: Mapped[int] = mapped_column(ForeignKey('order.order_id'))
     sucursal_id: Mapped[int] = mapped_column(ForeignKey('sucursal.sucursal_id'))

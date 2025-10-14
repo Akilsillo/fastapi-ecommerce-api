@@ -3,16 +3,14 @@ from typing import Optional, List
 
 from app.schemas.product import ProductOut
 
-# Cart Items Schemas
+# Order Detail Schemas
 
-class CartItemCreate(BaseModel):
+class OrderDetailCreate(BaseModel):
     product_id: int
     quantity: int
+    
 
-class CartItemUpdate(BaseModel):
-    quantity: Optional[int] = None
-
-class CartItemOut(BaseModel):
+class OrderDetailOut(BaseModel):
     product_id: int
     quantity: int
     subtotal: float
@@ -21,34 +19,34 @@ class CartItemOut(BaseModel):
 
     model_config = ConfigDict(from_attributes=True)
 
-# Cart Schemas
+# Order Schemas
 
-class CartCreate(BaseModel):
+class OrderCreate(BaseModel):
     user_id: int
-    items: Optional[List[CartItemCreate]] = []
+    items: Optional[List[OrderDetailCreate]] = []
     status_id: int
 
-class CartOut(BaseModel):
-    cart_id: int
+class OrderOut(BaseModel):
+    order_id: int
     created_at: str
     total_amount: float
     user_id: int
     status_id: int
-    items: Optional[List[CartItemOut]] = []
+    items: Optional[List[OrderDetailOut]] = []
 
     model_config = ConfigDict(from_attributes=True)
 
-class CartUpdate(BaseModel):
-    total_amount: Optional[float] = None
+class OrderUpdate(BaseModel):
     status_id: Optional[int] = None
 
-# Cart Status Schemas
+# Order Status Schemas
 
-class CartStatusCreate(BaseModel):
+class OrderStatusCreate(BaseModel):
     status_name: str = Field(max_length=25)
 
-class CartStatusOut(BaseModel):
+class OrderStatusOut(BaseModel):
     status_id: int
     status_name: str
 
     model_config = ConfigDict(from_attributes=True)
+

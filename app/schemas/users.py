@@ -8,12 +8,10 @@ class UserOut(BaseModel):
     surname: str
     email: EmailStr
     is_superuser: bool
-    
 
 class UserCreate(BaseModel):
-
-    name: str
-    surname: Optional[str]
+    name: str = Field(max_length=30)
+    surname: Optional[str] = Field(default=None, max_length=30)
     email: EmailStr
     password: str
     
@@ -21,10 +19,15 @@ class UserCreateSuperUser(UserCreate):
 
     is_superuser: Optional[bool] = Field(default=True)
 
+class UserUpdate(BaseModel):
+    name: Optional[str] = Field(default=None, max_length=30)
+    surname: Optional[str] = Field(default=None, max_length=30)
+    email: Optional[EmailStr] = None
 
 class UserUpdatePassword(BaseModel):
-    
-    id: int
     password1: str
     password2: str
     new_password: str
+
+class UserUpdateSuperUser(BaseModel):
+    is_superuser: bool

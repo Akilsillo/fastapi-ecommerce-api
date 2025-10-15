@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, String, Boolean, ForeignKey, DateTime, Float
+from sqlalchemy import Integer, String, Boolean, ForeignKey, DateTime, Numeric
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from app.core.database import Base
 from typing import Optional, List
@@ -13,7 +13,7 @@ class Payment(Base):
     payment_id: Mapped[Optional[int]] = mapped_column(primary_key=True, autoincrement=True)
     payment_gateway: Mapped[str] = mapped_column(String(30))
     transaction_id: Mapped[int] = mapped_column(Integer)
-    amount: Mapped[float] = mapped_column(Float)
+    amount: Mapped[float] = mapped_column(Numeric(10, 2))
     currency: Mapped[str] = mapped_column(String(20))
     created_at: Mapped[datetime] = mapped_column(DateTime)
     updated_at: Mapped[datetime] = mapped_column(DateTime)

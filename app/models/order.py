@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, String, Boolean, ForeignKey, DateTime, Float
+from sqlalchemy import Integer, String, Boolean, ForeignKey, DateTime, Numeric
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from app.core.database import Base
 from typing import Optional
@@ -15,7 +15,7 @@ class Order(Base):
 
     order_id: Mapped[Optional[int]] = mapped_column(primary_key=True, autoincrement=True)
     created_at: Mapped[datetime] = mapped_column(DateTime)
-    total_amount: Mapped[float] = mapped_column(Float)
+    total_amount: Mapped[float] = mapped_column(Numeric(10, 2))
     
     # Foreign Keys
     status_id: Mapped[int] = mapped_column(ForeignKey('order_status.status_id'))
@@ -32,8 +32,8 @@ class OrderDetail(Base):
     __tablename__='order_detail'
 
     quantity: Mapped[int] = mapped_column(Integer)
-    subtotal: Mapped[float] = mapped_column(Float)
-    product_price: Mapped[float] = mapped_column(Float)
+    subtotal: Mapped[float] = mapped_column(Numeric(10, 2))
+    product_price: Mapped[float] = mapped_column(Numeric(10, 2))
 
     # Foreign Keys
     order_id: Mapped[int] = mapped_column(ForeignKey('order.order_id'), primary_key=True)

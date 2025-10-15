@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, String, Boolean, ForeignKey, DateTime, Float
+from sqlalchemy import Integer, String, Boolean, ForeignKey, DateTime, Numeric
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from app.core.database import Base
 from typing import Optional, List
@@ -13,7 +13,7 @@ class Cart(Base):
 
     cart_id: Mapped[Optional[int]] = mapped_column(primary_key=True, autoincrement=True)
     created_at: Mapped[datetime] = mapped_column(DateTime)
-    total_amount: Mapped[float] = mapped_column(Float)
+    total_amount: Mapped[float] = mapped_column(Numeric(10, 2))
 
     # Foreign Keys
     user_id: Mapped[int] = mapped_column(ForeignKey('user.user_id'))
@@ -28,7 +28,7 @@ class CartItem(Base):
     __tablename__='cart_item'
 
     quantity: Mapped[int] = mapped_column(Integer)
-    subtotal: Mapped[float] = mapped_column(Float)
+    subtotal: Mapped[float] = mapped_column(Numeric(10, 2))
 
     # Foreign Keys
     cart_id: Mapped[int] = mapped_column(ForeignKey('cart.cart_id'), primary_key=True)

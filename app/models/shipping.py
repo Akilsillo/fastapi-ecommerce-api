@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, String, Boolean, ForeignKey, DateTime, Float
+from sqlalchemy import Integer, String, Boolean, ForeignKey, DateTime, Numeric
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from app.core.database import Base
 from typing import Optional, List
@@ -12,7 +12,7 @@ class Shipping(Base):
 
     shipping_id: Mapped[Optional[int]] = mapped_column(primary_key=True, autoincrement=True)
     tracking_code: Mapped[str] = mapped_column(String(100))
-    shipping_cost: Mapped[Optional[float]] = mapped_column(Float)
+    shipping_cost: Mapped[Optional[float]] = mapped_column(Numeric(10,2), default=0.00)
     crated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now())
     delivered_at: Mapped[Optional[datetime]] = mapped_column(DateTime, default=None)
     is_active: Mapped[Optional[bool]] = mapped_column(Boolean, default=True)

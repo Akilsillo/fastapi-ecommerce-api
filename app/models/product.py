@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, String, Boolean, ForeignKey, DateTime, Float
+from sqlalchemy import Integer, String, Boolean, ForeignKey, DateTime, Numeric
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from app.core.database import Base
 from typing import Optional, List
@@ -14,7 +14,7 @@ class Product(Base):
     product_id: Mapped[Optional[int]] = mapped_column(primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(50))
     description: Mapped[str] = mapped_column(String(300))
-    price: Mapped[float] = mapped_column(Float)
+    price: Mapped[float] = mapped_column(Numeric(10, 2))
     stock: Mapped[int] = mapped_column(Integer)
     image_url: Mapped[Optional[str]] = mapped_column(String)
     is_active: Mapped[Optional[bool]] = mapped_column(Boolean, default=True)

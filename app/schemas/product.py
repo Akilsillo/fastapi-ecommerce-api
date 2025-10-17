@@ -1,11 +1,18 @@
 from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional, List
 
+# Category Schemas
+
+class CategoryCreate(BaseModel):
+    name: str = Field(..., max_length=50)
+
 class CategoryOut(BaseModel):
     cat_id: int
     name: str
 
     model_config = ConfigDict(from_attributes=True)
+
+# Product Schemas
 
 class ProductBase(BaseModel):
     

@@ -13,7 +13,7 @@ class UserCreate(BaseModel):
     name: str = Field(max_length=30)
     surname: Optional[str] = Field(default=None, max_length=30)
     email: EmailStr
-    password: str
+    password_hash: str
     
 class UserCreateSuperUser(UserCreate):
 

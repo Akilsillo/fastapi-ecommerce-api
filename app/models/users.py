@@ -15,7 +15,7 @@ class User(Base):
     name: Mapped[str] = mapped_column(String(50))
     surname: Mapped[Optional[str]] = mapped_column(String(50))
     email: Mapped[str] = mapped_column(String(50))
-    password: Mapped[str] = mapped_column(String)
+    password_hash: Mapped[str] = mapped_column(String)
     is_active: Mapped[bool] = mapped_column(Boolean)
     is_superuser: Mapped[Optional[bool]] = mapped_column(Boolean, default=False)
     created_at: Mapped[datetime] = mapped_column(DateTime)

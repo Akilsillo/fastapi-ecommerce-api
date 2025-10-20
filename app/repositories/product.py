@@ -16,7 +16,7 @@ class CategoryRepository:
         return db_category
     
     def get_category(self, category_id: int):
-        return self.db.scalar(select(Category).where(Category.id == category_id))
+        return self.db.scalar(select(Category).where(Category.cat_id == category_id))
     
     def get_all_categories(self):
         return self.db.execute(select(Category).all())

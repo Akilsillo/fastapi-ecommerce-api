@@ -6,6 +6,7 @@ from app.schemas.product import ProductOut
 # Cart Items Schemas
 
 class CartItemCreate(BaseModel):
+    cart_id: int
     product_id: int
     quantity: int
 

@@ -12,6 +12,7 @@ class OrderDetailCreate(BaseModel):
 
 class OrderDetailOut(BaseModel):
     product_id: int
+    order_id: int
     quantity: int
     subtotal: float
 

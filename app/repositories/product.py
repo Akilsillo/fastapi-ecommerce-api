@@ -25,13 +25,14 @@ class ProductRepository:
     def __init__(self, db: Session):
         self.db = db
 
-    def create_product(self, product: ProductCreate):
+    def create_product(self, product: ProductCreate, category_id: int):
         db_product = Product(**product.model_dump())
+        db_product.cat_id = category_id
         self.db.add(db_product)
         self.db.commit()
         self.db.refresh(db_product)
         return db_product
-    #
+    
     def get_product(self, product_id: int):
         return self.db.scalar(select(Product).where(Product.id == product_id))
 

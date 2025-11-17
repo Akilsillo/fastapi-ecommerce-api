@@ -1,6 +1,8 @@
 from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional, List
 
+from app.models.product import Category
+
 # Category Schemas
 
 class CategoryCreate(BaseModel):
@@ -22,7 +24,7 @@ class ProductBase(BaseModel):
     stock: int
     image_url: Optional[str] = None
     is_active: Optional[bool] = True
-    cat_id: int
+
 
 
 class ProductCreate(ProductBase):
@@ -40,6 +42,7 @@ class ProductUpdate(ProductBase):
 
 class ProductOut(ProductBase):
     product_id: int
+    cat_id: int
     category: Optional[CategoryOut]
 
     model_config = ConfigDict(from_attributes=True)

@@ -34,13 +34,13 @@ class ProductRepository:
         return db_product
     
     def get_product(self, product_id: int):
-        return self.db.scalar(select(Product).where(Product.id == product_id))
+        return self.db.scalar(select(Product).where(Product.product_id == product_id))
 
     def get_all_products(self):
         return self.db.scalars(select(Product)).all()
     
     def get_products_by_category(self, category_id: int):
-        return self.db.execute(select(Product).where(Product.cat_id == category_id)).all()
+        return self.db.scalars(select(Product).where(Product.cat_id == category_id)).all()
 
     def update_product(self, product_id: int, product_update: ProductUpdate):
         db_product = self.get_product(product_id)

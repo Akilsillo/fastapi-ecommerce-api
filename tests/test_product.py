@@ -110,3 +110,39 @@ class TestProductRepository:
         assert retrieved_product.stock == 50
         assert retrieved_product.cat_id == 1
         assert retrieved_product.category.name == "Plantin"
+
+    def test_get_product(self, setup_database):
+        session = setup_database()
+        product_repo = ProductRepository(db=session)
+        retrieved_product = product_repo.get_product(1)
+        assert retrieved_product is not None
+        assert retrieved_product.name == "Aloe Vera"
+
+    def test_get_product_by_category(self, setup_database):
+        session = setup_database()
+        product_repo = ProductRepository(db=session)
+        products_in_category = product_repo.get_products_by_category(1)
+        assert len(products_in_category) == 1
+        assert products_in_category[0].name == "Aloe Vera"
+
+    def test_update_product(self, setup_database):
+        session = setup_database()
+        product_repo = ProductRepository(db=session)
+        product_update = ProductUpdate(
+            price=12.99,
+            stock=30
+        )
+        updated_product = product_repo.update_product(1, product_update)
+        assert updated_product is not None
+        assert float(updated_product.price) == 12.99
+        assert updated_product.stock == 30
+
+    def test_delete_product(self, setup_database):
+        session = setup_database()
+        product_repo = ProductRepository(db=session)
+        deleted_product = product_repo.delete_product(1)
+        assert deleted_product is not None
+        assert deleted_product.name == "Aloe Vera"
+        # Verify deletion
+        should_be_none = product_repo.get_product(1)
+        assert should_be_none is None

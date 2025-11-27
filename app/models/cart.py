@@ -28,6 +28,7 @@ class CartItem(Base):
     __tablename__='cart_item'
 
     quantity: Mapped[int] = mapped_column(Integer)
+    unit_price: Mapped[float] = mapped_column(Numeric(10, 2))
     subtotal: Mapped[float] = mapped_column(Numeric(10, 2))
 
     # Foreign Keys

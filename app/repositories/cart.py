@@ -5,7 +5,7 @@ from app.models.cart import Cart, CartItem, CartStatus
 from app.schemas.cart import *
 
 class CartRepository:
-    def _init__(self, db: Session):
+    def __init__(self, db: Session):
         self.db = db
 
     def create_cart(self, cart: CartCreate):
@@ -71,11 +71,21 @@ class CartItemRepository:
     def get_all_cart_items(self, cart_id: int):
         return self.db.scalars(select(CartItem).where(CartItem.cart_id == cart_id)).all()
     
-    def update_cart_item(self, cart_id: int, product_id: int, cart_item_update: CartItemUpdate):
+    # def update_cart_item(self, cart_id: int, product_id: int, cart_item_update: CartItemUpdate):
+    #     db_cart_item = self.get_cart_item(cart_id, product_id)
+    #     db_cart_item.subtotal = db_cart_item.unit_price * cart_item_update.quantity
+    #     if db_cart_item:
+    #         for key, value in cart_item_update.model_dump(exclude_unset=True).items():
+    #             setattr(db_cart_item, key, value)
+    #         self.db.commit()
+    #         self.db.refresh(db_cart_item)
+    #     return db_cart_item
+    
+    def update_cart_item_quantity(self, cart_id: int, product_id: int, quantity: int):
         db_cart_item = self.get_cart_item(cart_id, product_id)
         if db_cart_item:
-            for key, value in cart_item_update.model_dump(exclude_unset=True).items():
-                setattr(db_cart_item, key, value)
+            db_cart_item.quantity = quantity
+            db_cart_item.subtotal = db_cart_item.unit_price * quantity
             self.db.commit()
             self.db.refresh(db_cart_item)
         return db_cart_item

@@ -13,8 +13,7 @@ from app.schemas.product import ProductCreate, ProductUpdate, CategoryCreate
 from tests.test_db import db_session
 from tests.test_db import setup_database  # IGNORE
 
-TEST_SQLITE_URL = 'sqlite:///:memory:'
-TEST_ENGINE = create_engine(TEST_SQLITE_URL, connect_args={'check_same_thread': False}, poolclass=StaticPool)
+
 
 # Tests #
 

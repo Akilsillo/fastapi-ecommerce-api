@@ -16,7 +16,7 @@ class CartRepository:
         return db_cart
 
     def get_cart(self, cart_id: int):
-        return self.db.scalar(select(Cart).where(Cart.id == cart_id))
+        return self.db.scalar(select(Cart).where(Cart.cart_id == cart_id))
     
     def get_all_carts(self):
         return self.db.scalars(select(Cart)).all()
@@ -49,7 +49,7 @@ class CartStatusRepository:
         return db_status
 
     def get_cart_status(self, status_id: int):
-        return self.db.scalar(select(CartStatus).where(CartStatus.id == status_id))
+        return self.db.scalar(select(CartStatus).where(CartStatus.status_id == status_id))
     
     def get_all_cart_statuses(self):
         return self.db.scalars(select(CartStatus)).all()
